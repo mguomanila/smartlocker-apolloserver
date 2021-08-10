@@ -7,14 +7,16 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "ts-node ./src/utils"
+    "dev": "ts-node ./src/index.ts",
+    "test": "ts-node ./test.ts"
   },
   "dependencies": {
     "apollo-datasource-rest": "^3.1.1",
     "apollo-server": "^3.1.2",
-    "graphql": "^15.5.1",
-    "pg": "^8.7.1",
-    "pg-hstore": "^2.3.4",
-    "sequelize": "^6.6.5"
+    "axios": "^0.21.1",
+    "graphql": "^15.5.1"
+  },
+  "devDependencies": {
+    "ts-node": "^10.2.0"
   }
 }
