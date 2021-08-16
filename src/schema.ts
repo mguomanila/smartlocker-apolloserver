@@ -2,9 +2,9 @@ import { gql } from 'apollo-server'
 
 export const typeDefs = gql`
 	enum LockerTypes{
-		LockerType1
-		LockerType2
-		LockerType3
+		LOCKERTYPE1
+		LOCKERTYPE2
+		LOCKERTYPE3
 	}
 	type LockerTimeLimits{
 		id: ID
@@ -29,9 +29,10 @@ export const typeDefs = gql`
 	}
 	type Query{
 		lockerTimeLimits(userIds: ID): LockerTimeLimits!
+		user(id: ID): User
 	}
 	type Mutation {
-		lockerTimeLimits(queryType: QueryType, data: LockerTimeLimitsInput, id: ID): MutationResp!
+		lockerTimeLimits(data: LockerTimeLimitsInput, id: ID): MutationResp!
 	}
 	enum QueryType {
 		update

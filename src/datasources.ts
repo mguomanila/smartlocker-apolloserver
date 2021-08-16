@@ -12,12 +12,15 @@ class RESTApi extends RESTDataSource {
 		super()
 		this.baseURL = API_URI
 	}
-	static async store(){
+	static async store(id: string){
 		const API = axios.create({
 			baseURL: API_URI
 		})
-		const resp = await API.get('/user')
+		const resp = await API.get(`/user/${id}`)
 		return resp.data
+	}
+	async getUserCredentials(id: string){
+		return this.get(`/user/${id}`)
 	}
 	async getLockerTimeLimits(id: string){
 		return this.get(`/lockertimelimit/${id}`)
