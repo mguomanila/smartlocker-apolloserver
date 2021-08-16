@@ -1,14 +1,14 @@
-enum LockerTypes {
+export enum LockerTypes {
 	LockerType1,
 	LockerType2,
 	LockerType3,
 }
-interface User{
+export interface User{
 	id: string
 	name: string
 	email: string
 }
-interface LockerTimeLimit {
+export interface LockerTimeLimitInterface {
 	lockerType?: LockerTypes
 	pickupTimeLimit?: number
 	pickupReclaimTimeLimit?: number
@@ -22,10 +22,24 @@ interface LockerTimeLimit {
 const resolvers = {
 	Query: {
 		lockerTimeLimits: async(_: any, { userIds }: any, { dataSources }: any) => {
-			const lockerTimeLimit: LockerTimeLimit = await dataSources.RESTApi.getLockerTimeLimits(userIds)
+			const lockerTimeLimit: LockerTimeLimitInterface = await dataSources.RESTApi.getLockerTimeLimits(userIds)
 			return lockerTimeLimit
 		}
 	},
+	Mutation: {
+		lockerTimeLimits: async(_: any,  { ltl, id, queryType }: any, { dataSources }: any) => {
+			switch (queryType){
+				case QueryType.update:
+
+			}
+		}
+	}
 }
 
 export default resolvers
+
+export enum QueryType {
+	update = 'update',
+	insert = 'insert',
+	upsert = 'upsert',
+}

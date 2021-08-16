@@ -30,6 +30,7 @@ const server = new ApolloServer({
 	typeDefs,
 	dataSources: () => ({ RESTApi: new RESTApi }),
 	resolvers,
+	introspection: true,
 })
 
 const port = process.env.PORT || 3031
