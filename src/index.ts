@@ -22,9 +22,8 @@ const server = new ApolloServer({
 		// simple auth check on every request
 		const auth = req.headers && req.headers.authorization || ''
 		const email: string | null = Buffer.from(auth, 'base64').toString('ascii')
-		if (!isEmail.validate(email)) return { user: null }
-		const user: User = await RESTApi.store()
-		console.log(user)
+		// if (!isEmail.validate(email)) return { user: null }
+		const user = await RESTApi.store('1')
 		return { user:  { ...user }}
 	},
 	typeDefs,

@@ -24,14 +24,24 @@ const resolvers = {
 		lockerTimeLimits: async(_: any, { userIds }: any, { dataSources }: any) => {
 			const lockerTimeLimit: LockerTimeLimitInterface = await dataSources.RESTApi.getLockerTimeLimits(userIds)
 			return lockerTimeLimit
+		},
+		user: async (_: any, { id }: any, { dataSources, user }: any ) => {
+			return user
 		}
 	},
 	Mutation: {
-		lockerTimeLimits: async(_: any,  { ltl, id, queryType }: any, { dataSources }: any) => {
-			switch (queryType){
-				case QueryType.update:
-
+		lockerTimeLimits: async(_: any,  { data, id }: any, { dataSources }: any) => {
+			const resp = await dataSources.RESTApi.updatePostLockerTimeLimits(id, data)
+			let status, description
+			console.log(resp)
+			if(resp){
+				status = true
+				description = 'success'
+			} else {
+				status = false
+				description = 'error'
 			}
+			return { status, description }
 		}
 	}
 }
