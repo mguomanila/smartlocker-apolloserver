@@ -22,12 +22,12 @@ const context = async({ req }: any) => {
 	const auth = req.headers && req.headers.authorization || ''
 	const email: string | null = Buffer.from(auth, 'base64').toString('ascii')
 	// if (!isEmail.validate(email)) return { user: null }
-	const user = await RESTApi.store('marlon@localhost.com')
+	const user = await RESTApi.store(email)
 	return { user:  { ...user }}
 } 
 
 const server = new ApolloServer({
-	// context,
+	context,
 	typeDefs,
 	dataSources: () => ({ RESTApi: new RESTApi }),
 	resolvers,

@@ -30,10 +30,10 @@ const resolvers = {
 			return user
 		},
 		email: async(_: any, { email }: any, { dataSources, user }: any) => {
-			// if(user.email) return user
-			// else return {}
-			const resp = await dataSources.RESTApi.getUserCredentialEmail(email)
-			return resp
+			if(user.email) return user
+			else return {}
+			// const resp = await dataSources.RESTApi.getUserCredentialEmail(email)
+			// return resp
 		}
 	},
 	Mutation: {
