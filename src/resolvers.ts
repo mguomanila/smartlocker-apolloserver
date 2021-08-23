@@ -23,12 +23,17 @@ const resolvers = {
 	Query: {
 		lockerTimeLimits: async(_: any, { userIds }: any, { dataSources }: any) => {
 			const lockerTimeLimit: LockerTimeLimitInterface | string = await dataSources.RESTApi.getLockerTimeLimits(userIds)
-			console.log(lockerTimeLimit)
 			if(lockerTimeLimit == 'error') return false
 			return lockerTimeLimit
 		},
 		user: async (_: any, { id }: any, { dataSources, user }: any ) => {
 			return user
+		},
+		email: async(_: any, { email }: any, { dataSources, user }: any) => {
+			// if(user.email) return user
+			// else return {}
+			const resp = await dataSources.RESTApi.getUserCredentialEmail(email)
+			return resp
 		}
 	},
 	Mutation: {

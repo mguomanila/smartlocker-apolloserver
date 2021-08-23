@@ -30,6 +30,7 @@ export const typeDefs = gql`
 	type Query{
 		lockerTimeLimits(userIds: ID): LockerTimeLimits!
 		user(id: ID): User
+		email(email: ID): User
 	}
 	type Mutation {
 		lockerTimeLimits(data: LockerTimeLimitsInput, id: ID): MutationResp!
