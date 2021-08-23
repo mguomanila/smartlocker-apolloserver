@@ -1,7 +1,7 @@
 import { RESTDataSource } from 'apollo-datasource-rest'
 import axios from 'axios'
 
-import { LockerTimeLimitInterface } from './resolvers'
+import { LockerTimeLimitInterface } from '../resolvers'
 
 const API_URI = 'http://localhost:3033/api'
 

@@ -2,7 +2,7 @@ import { ApolloServer } from 'apollo-server'
 import { typeDefs } from './schema'
 import resolvers from './resolvers'
 
-import RESTApi from './datasources'
+import RESTApi from './datasources/rest_api'
 
 const isEmail = {
 	validate: (email: string | null) => {

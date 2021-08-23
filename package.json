@@ -11,6 +11,7 @@
     "test": "ts-node ./test.ts"
   },
   "dependencies": {
+    "apollo-datasource": "^3.0.3",
     "apollo-datasource-rest": "^3.1.1",
     "apollo-server": "^3.1.2",
     "axios": "^0.21.1",
