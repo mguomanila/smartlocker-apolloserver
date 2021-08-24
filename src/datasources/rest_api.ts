@@ -30,10 +30,11 @@ class RESTApi extends RESTDataSource {
 	}
 	async postLockerTimeLimits(id: string, ){}
 	async updatePostLockerTimeLimits(id: string, data: LockerTimeLimitInterface){
-		const resp = await this.post(`/lockertimelimit/${id}`, data)
-		const description = resp.data
-		console.log(resp.data)
-		return { status, description }
+		const resp: {
+			status: boolean
+			description: string
+		} = await this.post(`/lockertimelimit/${id}`, data)
+		return resp
 	}
 }
 

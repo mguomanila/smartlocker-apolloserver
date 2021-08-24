@@ -4,14 +4,7 @@ import resolvers from './resolvers'
 
 import RESTApi from './datasources/rest_api'
 
-const isEmail = {
-	validate: (email: string | null) => {
-		// todo: validate email here
-		return email
-	}
-}
-
-interface User{
+export interface User{
 	id: string
 	name: string
 	email: string
@@ -19,10 +12,10 @@ interface User{
 
 const context = async({ req }: any) => {
 	// simple auth check on every request
-	const auth = req.headers && req.headers.authorization || ''
-	const email: string | null = Buffer.from(auth, 'base64').toString('ascii')
+	const email = req.headers && req.headers.authorization || ''
+	// const email: string | null = Buffer.from(auth, 'base64').toString('ascii')
 	// if (!isEmail.validate(email)) return { user: null }
-	const user = await RESTApi.store(email)
+	const user: User = await RESTApi.store(email)
 	return { user:  { ...user }}
 } 
 
