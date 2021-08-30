@@ -1,14 +1,8 @@
 import { ApolloServer } from 'apollo-server'
 import { typeDefs } from './schema'
-import resolvers from './resolvers'
+import resolvers, { User } from './resolvers'
 
 import RESTApi from './datasources/rest_api'
-
-export interface User{
-	id: string
-	name: string
-	email: string
-}
 
 const context = async({ req }: any) => {
 	// simple auth check on every request

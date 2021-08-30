@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server'
 
 export const typeDefs = gql`
-	type LockerTimeLimits{
+	type LockerTimeLimits {
 		id: ID
 		lockerType: Int
 		pickupTimeLimit: Int
@@ -18,8 +18,9 @@ export const typeDefs = gql`
 		email: ID
 	}
 	type LockerUserTypes{
-		userIds: ID
-		lockerUserType: Int
+		id: Int
+		userIds: Int
+		lockerUserType: String
 		description: String
 		monthlyFee: Int
 	}
@@ -40,12 +41,13 @@ export const typeDefs = gql`
 		user(id: ID): User
 		email(email: ID): User
 		lockerTimeLimits(userIds: ID): LockerTimeLimits
-		lockerUserType(id: ID): LockerUserTypes
+		lockerUserTypes(id: ID): [LockerUserTypes]
 		courierType(id: ID): CourierType
 		settings(id: ID): Settings
 	}
 	type Mutation {
 		lockerTimeLimits(data: LockerTimeLimitsInput, id: ID): MutationResp!
+		lockerUserTypes(data: [LockerUserTypesInput!]): MutationResp!
 	}
 	enum QueryType {
 		update
@@ -66,5 +68,12 @@ export const typeDefs = gql`
 		shipoutReclaimTimeLimit: Int
 		storageTimeLimit: Int
 		storageReclaimTimeLimit: Int
+	}
+	input LockerUserTypesInput{
+		id: Int!
+		userIds: Int!
+		lockerUserType: String
+		description: String
+		monthlyFee: Int
 	}
 `

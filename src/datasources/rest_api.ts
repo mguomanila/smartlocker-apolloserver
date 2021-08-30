@@ -1,7 +1,7 @@
 import { RESTDataSource } from 'apollo-datasource-rest'
 import axios from 'axios'
 
-import { LockerTimeLimitInterface } from '../resolvers'
+import { ILockerTimeLimit, ILockerUserTypes } from '../resolvers'
 
 const API_URI = 'http://localhost:3033/api'
 
@@ -29,11 +29,24 @@ class RESTApi extends RESTDataSource {
 		return this.get(`/lockertimelimit/${id}`)
 	}
 	async postLockerTimeLimits(id: string, ){}
-	async updatePostLockerTimeLimits(id: string, data: LockerTimeLimitInterface){
+	async updatePostLockerTimeLimits(id: string, data: ILockerTimeLimit){
 		const resp: {
 			status: boolean
 			description: string
 		} = await this.post(`/lockertimelimit/${id}`, data)
+		return resp
+	}
+	async getLockerUserTypes(userIds: number){
+		console.log('userids', userIds)
+		const resp: ILockerUserTypes[] = await this.get(`/lockerusertypes/${userIds}`)
+		return resp
+	}
+	async postLockerUserTypes(data: ILockerUserTypes[]){
+		console.log('post', data)
+		const resp: {
+			status: boolean
+			description: string
+		} = await this.post(`/lockerusertypes/`, data)
 		return resp
 	}
 }
