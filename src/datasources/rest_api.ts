@@ -25,7 +25,7 @@ class RESTApi extends RESTDataSource {
 	async getUserCredentialId(id: string){
 		return this.get(`/user/id/${id}`)
 	}
-	async getLockerTimeLimits(id: string){
+	async getLockerTimeLimits(id: number){
 		return this.get(`/lockertimelimit/${id}`)
 	}
 	async postLockerTimeLimits(id: string, ){}

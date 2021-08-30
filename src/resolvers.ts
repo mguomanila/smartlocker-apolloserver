@@ -2,7 +2,7 @@
 const resolvers = {
 	Query: {
 		lockerTimeLimits: async(_: any, { userIds }: any, { dataSources }: any) => {
-			const lockerTimeLimit: Partial<LockerTimeLimitInterface> | string = await dataSources.RESTApi.getLockerTimeLimits(userIds)
+			const lockerTimeLimit: LockerTimeLimitInterface | string = await dataSources.RESTApi.getLockerTimeLimits(userIds)
 			if(lockerTimeLimit == 'error') return false
 			return lockerTimeLimit
 		},
@@ -45,7 +45,7 @@ export interface User{
 	email: string
 }
 export interface LockerTimeLimitInterface {
-	lockerType: LockerTypes
+	lockerType: number
 	pickupTimeLimit: number
 	pickupReclaimTimeLimit?: number
 	bookingExpiry: number
